@@ -1,0 +1,66 @@
+.visaListExpense {
+  border: 2px dashed #4682B4;             /* softer blue */
+  border-radius: 1rem;                    /* smoother rounding */
+  padding: 1rem 1.5rem;
+  width: 40%;
+  margin: 1rem auto;
+  background: linear-gradient(135deg, #f0f8ff, #e6f0fa); /* soft gradient */
+  box-shadow: 0 6px 12px rgba(0, 0, 255, 0.15);          /* soft blue shadow */
+  /* transition: transform 0.2s ease, box-shadow 0.2s ease; */
+}
+
+.visaListExpense:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 255, 0.25);
+}
+#left{
+   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: slideOut 0.6s ease-in-out;
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(-80%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(10%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+#right{
+   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: slideIn 0.6s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(80%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-10%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.container-page{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,33 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import logo from '/logo.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Menu from "./components/menu/Menu";
+import { useExpense } from "./context/ExpenseContext";
+import ExpensesPage from "./components/ExpensePage/ExpensesPage";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // today
+  const today = new Date();
+  const todayMonth = today.getMonth() + 1; // 1–12
+  const todayYear = today.getFullYear();
 
+  const [currMonth, setCurrMonth] = useState(
+    new Date(today.toLocaleDateString()).getMonth() + 1
+  );
+  const [currYear, setCurrYear] = useState(
+    new Date(today.toLocaleDateString()).getFullYear()
+  );
+
+  const [left, setLeft] = useState(false);
+  const [right, setRight] = useState(false);
+
+  useEffect(() => {
+    if (currMonth == 0) {
+      setCurrYear(currYear - 1);
+      setCurrMonth(12);
+    } else if (currMonth == 13) {
+      setCurrYear(currYear + 1);
+      setCurrMonth(1);
+    }
+
+  },[currMonth, currYear])
   return (
     <>
-      <div>
-        <img src={logo} className="logo" alt="Vite logo" />
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <Menu />
+      <section>
+        <h1>
+          {currYear} - {currMonth}
+        </h1>
+
+        <button
+          id="subMonth"
+          onClick={() => {
+            setCurrMonth((currMonth) => currMonth - 1);
+            setLeft(false);
+            setRight(false);
+            setTimeout(() => {
+              setLeft(true);
+            }, 200);
+          }}
+          disabled={currYear <= 2000 && currMonth === 1}
+        >
+          -
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <button
+          id="addMonth"
+          onClick={() => {
+            setCurrMonth((currMonth) => currMonth + 1);
+            setLeft(false);
+            setRight(false);
+            setTimeout(() => {
+              setRight(true);
+            }, 200);
+          }}
+          disabled={
+            currYear > todayYear ||
+            (currYear === todayYear && currMonth >= todayMonth)
+          }
+        >
+          +
+        </button>
+        {left && <ExpensesPage dir="left" currMonth={currMonth} currYear={currYear} />}
+        {right && <ExpensesPage dir="right" currMonth={currMonth} currYear={currYear}/>}
+      </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

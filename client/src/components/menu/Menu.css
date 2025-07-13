@@ -1,0 +1,21 @@
+menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+}
+
+menu a img{
+    width: 4rem;
+    height: 4rem;
+}
+
+menu ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+
+}
