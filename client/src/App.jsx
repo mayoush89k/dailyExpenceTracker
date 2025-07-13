@@ -19,7 +19,7 @@ function App() {
   } = useExpense();
 
   const [left, setLeft] = useState(false);
-  const [right, setRight] = useState(false);
+  const [right, setRight] = useState(true);
 
   useEffect(() => {
     if (currMonth == 0) {
@@ -32,23 +32,35 @@ function App() {
   }, [currMonth, currYear]);
   return (
     <>
-      <Menu />
-      <Header />
-      <section>
-        <h2 style={{ textAlign: "center", color: "#007c91" }}>
-          {new Date(currYear, currMonth - 1).toLocaleString("default", {
-            month: "long",
-            year: "numeric",
-          })}
-        </h2>
+      <section className="body-container">
+        <Menu />
+        <sidebar className="body-sidebar">
+          <Header />
+          <section>
+            <h2 style={{ textAlign: "center", color: "#007c91" }}>
+              {new Date(currYear, currMonth - 1).toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              })}
+            </h2>
 
-        <NavMonths setLeft={setLeft} setRight={setRight} />
-        {left && (
-          <ExpensesPage dir="left" currMonth={currMonth} currYear={currYear} />
-        )}
-        {right && (
-          <ExpensesPage dir="right" currMonth={currMonth} currYear={currYear} />
-        )}
+            <NavMonths setLeft={setLeft} setRight={setRight} />
+            {left && (
+              <ExpensesPage
+                dir="left"
+                currMonth={currMonth - 1}
+                currYear={currYear}
+              />
+            )}
+            {right && (
+              <ExpensesPage
+                dir="right"
+                currMonth={currMonth}
+                currYear={currYear}
+              />
+            )}
+          </section>
+        </sidebar>
       </section>
     </>
   );

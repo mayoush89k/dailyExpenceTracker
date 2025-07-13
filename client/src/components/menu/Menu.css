@@ -1,5 +1,7 @@
 menu {
   display: flex;
+    margin-block-start:0;
+    margin-block-end:0;
   justify-content: space-between;
   align-items: center;
   background-color: #00acc1;
@@ -58,6 +60,8 @@ menu ul li:hover {
   menu {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 800px;
   }
 
   menu ul {

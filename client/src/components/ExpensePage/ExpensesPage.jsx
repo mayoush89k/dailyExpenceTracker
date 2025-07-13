@@ -6,16 +6,14 @@ import { useExpense } from "../../context/ExpenseContext";
 export default function ExpensesPage({ dir, currMonth, currYear }) {
   const visa = [1111, 1112, 1113];
   const [expensesOfThisMonth, setExpensesOfThisMonth] = useState([]);
-  const { getExpensesOfThisMonth } = useExpense();
+  const { getExpensesOfThisMonth, getSumCurrMonthExpenses, totalOfThisMonth } =
+    useExpense();
 
   useEffect(() => {
-    console.log("useEffect");
-console.log(currMonth);
-console.log(currYear);
-
     async function fetchData() {
       const dataList = await getExpensesOfThisMonth(currMonth, currYear);
       setExpensesOfThisMonth(dataList);
+      await getSumCurrMonthExpenses(currMonth, currYear);
     }
     fetchData();
   }, [currMonth, currYear]);
@@ -26,23 +24,26 @@ console.log(currYear);
 
   return (
     <section id={dir}>
-      <section className="container-page">
-        {visa.map((v, key) => (
-          <section className="visaListExpense" key={`Visa${key}`}>
-            <h3>
-              <FaCreditCard /> Visa {v}
-            </h3>
-            {expensesOfThisMonth.map((item, key) => {
-              return (
-                item.visaNumber == v && (
-                  <section key={`expense${key}`}>
-                    {item.shopName}: {item.amount}
-                  </section>
-                )
-              );
-            })}
-          </section>
-        ))}
+      {visa.map((v, i) => (
+        <section className="visaListExpense" key={`Visa${i}`}>
+          <h3 className="visaTitle">💳 Visa {v}</h3>
+          {expensesOfThisMonth
+            .filter((item) => item.visaNumber === v)
+            .map((item, j) => (
+              <section key={`expense${j}`}>
+                <section>
+                  {item.paymentMethod} - {item.visaNumber}
+                </section>
+                <section>
+                  {item.shopName}: ₪{item.amount}
+                </section>
+              </section>
+            ))}
+        </section>
+      ))}
+
+      <section className="total-expense">
+        🧾 <strong>Total:</strong> ₪{totalOfThisMonth.toFixed(2)}
       </section>
     </section>
   );

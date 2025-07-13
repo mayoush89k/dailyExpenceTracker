@@ -8,3 +8,9 @@
   letter-spacing: 1px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 768px) {
+  .top-menu{
+    width: 100%;
+  }
+}

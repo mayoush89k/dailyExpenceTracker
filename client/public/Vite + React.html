@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5173/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="./Vite + React_files/client"></script>
+
+    
+    <link rel="icon" type="image/svg+xml" href="./Vite + React_files/logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite + React</title>
+  <style type="text/css" data-vite-dev-id="C:/Users/Dell/Desktop/personal apps/dailyExpenceTracker/client/src/index.css">:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  /* place-items: center; */
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/Desktop/personal apps/dailyExpenceTracker/client/src/App.css">#root {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  width: 100% !important;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.body-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .body-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/Desktop/personal apps/dailyExpenceTracker/client/src/components/menu/Menu.css">menu {
+  display: flex;
+    margin-block-start:0;
+    margin-block-end:0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00acc1;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-bottom: 4px solid #007c91;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+menu a img {
+  width: 3.5rem;
+  height: 3.5rem;
+  transition: transform 0.3s ease;
+}
+
+menu a img:hover {
+  transform: scale(1.1);
+}
+
+menu ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+menu ul li {
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+menu ul li::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+menu ul li:hover::after {
+  width: 100%;
+}
+
+menu ul li:hover {
+  color: #e0f7fa;
+}
+
+@media (max-width: 768px) {
+  menu {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  menu ul {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+
+  menu a img {
+    width: 3rem;
+    height: 3rem;
+  }
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/Desktop/personal apps/dailyExpenceTracker/client/src/components/ExpensePage/ExpensesPage.css">.visaListExpense {
+  background: linear-gradient(135deg, #8be2ed, #ffffff);
+  border: 2px dashed #00acc1;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  width: 90%;
+  max-width: 400px;
+  margin: 1rem auto;
+  box-shadow: 0 8px 20px rgba(0, 172, 193, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.visaListExpense:hover {
+  transform: scale(1.02);
+}
+#left {
+  animation: slideOut 0.6s ease-in-out;
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(-80%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(10%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+#left,
+#right {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#right {
+  animation: slideIn 0.6s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(80%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-10%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.container-page {
+  max-width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.total-expense {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #007c91;
+  background-color: #e0f7fa;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 10px rgba(0, 124, 145, 0.1);
+}
+
+.visaTitle {
+ background-color: #00acc1;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/Desktop/personal apps/dailyExpenceTracker/client/src/components/Header/Header.css">.top-menu {
+  background-color: #00acc1;
+  color: white;
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .top-menu{
+    width: 100%;
+  }
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/Desktop/personal apps/dailyExpenceTracker/client/src/components/NavMonths/NavMonths.css">.month-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.month-nav button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #00acc1;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.month-nav button:hover {
+  background-color: #007c91;
+}
+
+.month-nav button:disabled {
+  background-color: #b2ebf2;
+  cursor: not-allowed;
+}
+</style></head>
+  <body>
+    <div id="root"><section class="body-container"><menu><section><a href="https://daily-expense-tracking.netlify.app/"><img src="./Vite + React_files/logo.svg"></a></section><ul><li>Home</li><li>Monthly Diagram</li><li>How Does it Work</li><li>Add New</li></ul></menu><sidebar class="body-sidebar"><header class="top-menu">💰 Monthly Expense Tracker</header><section><h2 style="text-align: center; color: rgb(0, 124, 145);">July 2025</h2><div class="month-nav"><button>⬅️ Previous</button><button disabled="">Next ➡️</button></div><section id="right"><section class="visaListExpense"><h3 class="visaTitle">💳 Visa 1111</h3><section><section>Visa - 1111</section><section>Shufersal: ₪350</section></section></section><section class="visaListExpense"><h3 class="visaTitle">💳 Visa 1112</h3><section><section>Visa - 1112</section><section>Shufersal: ₪350</section></section></section><section class="visaListExpense"><h3 class="visaTitle">💳 Visa 1113</h3></section><section class="total-expense">🧾 <strong>Total:</strong> ₪700.00</section></section></section></sidebar></section></div>
+    <script type="module" src="./Vite + React_files/main.jsx"></script>
+  
+
+</body></html>

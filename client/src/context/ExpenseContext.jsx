@@ -13,6 +13,8 @@ export const ExpenseProvider = ({ children }) => {
     new Date(today.toLocaleDateString()).getFullYear()
   );
 
+  const [totalOfThisMonth, setTotalOfThisMonth] = useState(0);
+
   const [expenseList, setExpenseList] = useState([
     {
       shopName: "Delek",
@@ -399,6 +401,17 @@ export const ExpenseProvider = ({ children }) => {
     setCurrMonth((currYear) => currYear - 1);
   };
 
+  const getSumCurrMonthExpenses = async (currMonth, currYear) => {
+    const expenseList = await getExpensesOfThisMonth(currMonth, currYear);
+    console.log(expenseList);
+
+    setTotalOfThisMonth(
+      expenseList.reduce((acc, cur) => {
+        return cur.amount + acc;
+      }, 0)
+    );
+  };
+
   return (
     <ExpenseContext.Provider
       value={{
@@ -415,6 +428,8 @@ export const ExpenseProvider = ({ children }) => {
         decreaseYear,
         setFirstMonth,
         setLastMonth,
+        getSumCurrMonthExpenses,
+        totalOfThisMonth,
       }}
     >
       {children}
