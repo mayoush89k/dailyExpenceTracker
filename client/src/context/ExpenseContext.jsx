@@ -422,6 +422,8 @@ export const ExpenseProvider = ({ children }) => {
         getExpensesOfVisa,
         currMonth,
         currYear,
+        setCurrMonth,
+        setCurrYear,
         increaseMonth,
         decreaseMonth,
         increaseYear,
