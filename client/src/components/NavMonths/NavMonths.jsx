@@ -45,6 +45,7 @@ export default function NavMonths({ setLeft, setRight }) {
       >
         Next ➡️
       </button>
+      <input type="date" onChange={(e) => setDate(e.target.value)} />
     </div>
   );
 }
