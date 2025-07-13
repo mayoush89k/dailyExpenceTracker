@@ -1,4 +1,5 @@
 .visaListExpense {
+    font-size: 1.4rem;
   background: linear-gradient(135deg, #8be2ed, #ffffff);
   border: 2px dashed #00acc1;
   border-radius: 1rem;
@@ -94,6 +95,22 @@
 }
 
 @media (max-width: 768px) {
+  .visaListExpense {
+    
+    font-size: 0.7rem;
+  }
+  .total-expense {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  .visaTitle {
+    padding: 0.5rem;
+    font-size: 0.5rem;
+  }
+.container-page {
+   gap: 0.5rem;
+}
   @keyframes slideIn {
     0% {
       transform: translateX(10%);

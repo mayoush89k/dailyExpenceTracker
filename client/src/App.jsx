@@ -37,7 +37,7 @@ function App() {
         <sidebar className="body-sidebar">
           <Header />
           <section>
-            <h2 style={{ textAlign: "center", color: "#007c91" }}>
+            <h2 className="today-title">
               {new Date(currYear, currMonth - 1).toLocaleString("default", {
                 month: "long",
                 year: "numeric",

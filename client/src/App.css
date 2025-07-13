@@ -51,6 +51,10 @@ button:disabled {
   display: flex;
   flex-direction: column;
 }
+.today-title{
+  text-align: center;
+  color: #007c91; 
+}
 
 @media (max-width: 768px) {
   .body-container {
@@ -62,5 +66,8 @@ button:disabled {
   }
   .body-sidebar{
     width: 100%;
+  }
+  .today-title{
+    font-size: smaller;
   }
 }

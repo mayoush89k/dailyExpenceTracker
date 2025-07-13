@@ -24,3 +24,15 @@
   background-color: #b2ebf2;
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  .month-nav {
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+
+  .month-nav button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.5rem;
+  }
+}
