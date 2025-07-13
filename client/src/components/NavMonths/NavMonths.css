@@ -1,0 +1,26 @@
+.month-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.month-nav button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #00acc1;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.month-nav button:hover {
+  background-color: #007c91;
+}
+
+.month-nav button:disabled {
+  background-color: #b2ebf2;
+  cursor: not-allowed;
+}

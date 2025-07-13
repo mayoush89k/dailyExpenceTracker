@@ -4,6 +4,15 @@ export const ExpenseContext = createContext();
 export const useExpense = () => useContext(ExpenseContext);
 
 export const ExpenseProvider = ({ children }) => {
+  // Today
+  const today = new Date();
+  const [currMonth, setCurrMonth] = useState(
+    new Date(today.toLocaleDateString()).getMonth() + 1
+  );
+  const [currYear, setCurrYear] = useState(
+    new Date(today.toLocaleDateString()).getFullYear()
+  );
+
   const [expenseList, setExpenseList] = useState([
     {
       shopName: "Delek",
@@ -349,13 +358,15 @@ export const ExpenseProvider = ({ children }) => {
 
   const getExpensesOfThisMonth = async (currMonth, currYear) => {
     return expenseList
-      .filter((item) => new Date(item.date).getFullYear() == currYear)      
+      .filter((item) => new Date(item.date).getFullYear() == currYear)
       .filter((item) => new Date(item.date).getMonth() + 1 == currMonth);
   };
 
-  const getExpensesOfVisa = async (visa , currMonth , currYear) => {
-    return (await getExpensesOfThisMonth(currMonth , currYear)).filter(item => item.visa == visa)
-  }
+  const getExpensesOfVisa = async (visa, currMonth, currYear) => {
+    return (await getExpensesOfThisMonth(currMonth, currYear)).filter(
+      (item) => item.visa == visa
+    );
+  };
 
   const filterMonth = async (currMonth) => {
     return await getAll.filter(
@@ -368,9 +379,43 @@ export const ExpenseProvider = ({ children }) => {
     );
   };
 
+  const setFirstMonth = () => {
+    setCurrMonth(1);
+  };
+  const setLastMonth = () => {
+    setCurrMonth(12);
+  };
+  const increaseMonth = () => {
+    setCurrMonth((currMonth) => currMonth + 1);
+  };
+  const decreaseMonth = () => {
+    setCurrMonth((currMonth) => currMonth - 1);
+  };
+
+  const increaseYear = () => {
+    setCurrMonth((currYear) => currYear + 1);
+  };
+  const decreaseYear = () => {
+    setCurrMonth((currYear) => currYear - 1);
+  };
+
   return (
     <ExpenseContext.Provider
-      value={{ expenseList, filterMonth, filterYear, getExpensesOfThisMonth , getExpensesOfVisa}}
+      value={{
+        expenseList,
+        filterMonth,
+        filterYear,
+        getExpensesOfThisMonth,
+        getExpensesOfVisa,
+        currMonth,
+        currYear,
+        increaseMonth,
+        decreaseMonth,
+        increaseYear,
+        decreaseYear,
+        setFirstMonth,
+        setLastMonth,
+      }}
     >
       {children}
     </ExpenseContext.Provider>

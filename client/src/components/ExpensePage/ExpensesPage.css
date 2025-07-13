@@ -1,17 +1,18 @@
+
 .visaListExpense {
-  border: 2px dashed #4682B4;             /* softer blue */
-  border-radius: 1rem;                    /* smoother rounding */
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+  border: 2px dashed #00acc1;
+  border-radius: 1rem;
   padding: 1rem 1.5rem;
-  width: 40%;
+  width: 90%;
+  max-width: 400px;
   margin: 1rem auto;
-  background: linear-gradient(135deg, #f0f8ff, #e6f0fa); /* soft gradient */
-  box-shadow: 0 6px 12px rgba(0, 0, 255, 0.15);          /* soft blue shadow */
-  /* transition: transform 0.2s ease, box-shadow 0.2s ease; */
+  box-shadow: 0 8px 20px rgba(0, 172, 193, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .visaListExpense:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 255, 0.25);
+  transform: scale(1.02);
 }
 #left{
    display: flex;

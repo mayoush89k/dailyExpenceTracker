@@ -1,0 +1,10 @@
+.top-menu {
+  background-color: #00acc1;
+  color: white;
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

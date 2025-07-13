@@ -3,74 +3,52 @@ import "./App.css";
 import Menu from "./components/menu/Menu";
 import { useExpense } from "./context/ExpenseContext";
 import ExpensesPage from "./components/ExpensePage/ExpensesPage";
+import Header from "./components/Header/Header";
+import NavMonths from "./components/NavMonths/NavMonths";
 
 function App() {
-  // today
-  const today = new Date();
-  const todayMonth = today.getMonth() + 1; // 1–12
-  const todayYear = today.getFullYear();
-
-  const [currMonth, setCurrMonth] = useState(
-    new Date(today.toLocaleDateString()).getMonth() + 1
-  );
-  const [currYear, setCurrYear] = useState(
-    new Date(today.toLocaleDateString()).getFullYear()
-  );
+  const {
+    currMonth,
+    currYear,
+    increaseMonth,
+    decreaseMonth,
+    increaseYear,
+    decreaseYear,
+    setFirstMonth,
+    setLastMonth,
+  } = useExpense();
 
   const [left, setLeft] = useState(false);
   const [right, setRight] = useState(false);
 
   useEffect(() => {
     if (currMonth == 0) {
-      setCurrYear(currYear - 1);
-      setCurrMonth(12);
+      decreaseYear();
+      setLastMonth(12);
     } else if (currMonth == 13) {
-      setCurrYear(currYear + 1);
-      setCurrMonth(1);
+      increaseMonth(currYear + 1);
+      setFirstMonth(1);
     }
-
-  },[currMonth, currYear])
+  }, [currMonth, currYear]);
   return (
     <>
       <Menu />
+      <Header />
       <section>
-        <h1>
-          {currYear} - {currMonth}
-        </h1>
+        <h2 style={{ textAlign: "center", color: "#007c91" }}>
+          {new Date(currYear, currMonth - 1).toLocaleString("default", {
+            month: "long",
+            year: "numeric",
+          })}
+        </h2>
 
-        <button
-          id="subMonth"
-          onClick={() => {
-            setCurrMonth((currMonth) => currMonth - 1);
-            setLeft(false);
-            setRight(false);
-            setTimeout(() => {
-              setLeft(true);
-            }, 200);
-          }}
-          disabled={currYear <= 2000 && currMonth === 1}
-        >
-          -
-        </button>
-        <button
-          id="addMonth"
-          onClick={() => {
-            setCurrMonth((currMonth) => currMonth + 1);
-            setLeft(false);
-            setRight(false);
-            setTimeout(() => {
-              setRight(true);
-            }, 200);
-          }}
-          disabled={
-            currYear > todayYear ||
-            (currYear === todayYear && currMonth >= todayMonth)
-          }
-        >
-          +
-        </button>
-        {left && <ExpensesPage dir="left" currMonth={currMonth} currYear={currYear} />}
-        {right && <ExpensesPage dir="right" currMonth={currMonth} currYear={currYear}/>}
+        <NavMonths setLeft={setLeft} setRight={setRight} />
+        {left && (
+          <ExpensesPage dir="left" currMonth={currMonth} currYear={currYear} />
+        )}
+        {right && (
+          <ExpensesPage dir="right" currMonth={currMonth} currYear={currYear} />
+        )}
       </section>
     </>
   );

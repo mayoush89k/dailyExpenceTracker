@@ -1,21 +1,74 @@
-menu{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
+menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00acc1;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-bottom: 4px solid #007c91;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
 }
 
-menu a img{
-    width: 4rem;
-    height: 4rem;
+menu a img {
+  width: 3.5rem;
+  height: 3.5rem;
+  transition: transform 0.3s ease;
 }
 
-menu ul{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 50%;
+menu a img:hover {
+  transform: scale(1.1);
+}
 
+menu ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+menu ul li {
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+menu ul li::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+menu ul li:hover::after {
+  width: 100%;
+}
+
+menu ul li:hover {
+  color: #e0f7fa;
+}
+
+@media (max-width: 768px) {
+  menu {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  menu ul {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+
+  menu a img {
+    width: 3rem;
+    height: 3rem;
+  }
 }
