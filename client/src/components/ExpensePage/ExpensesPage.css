@@ -96,7 +96,7 @@
 
 @media (max-width: 768px) {
   .visaListExpense {
-    
+    width: 60%;
     font-size: 0.7rem;
   }
   .total-expense {

@@ -26,7 +26,7 @@ function App() {
       decreaseYear();
       setLastMonth(12);
     } else if (currMonth == 13) {
-      increaseMonth(currYear + 1);
+      increaseYear();
       setFirstMonth(1);
     }
   }, [currMonth, currYear]);
