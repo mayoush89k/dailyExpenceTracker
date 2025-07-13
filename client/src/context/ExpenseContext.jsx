@@ -9,9 +9,13 @@ export const ExpenseProvider = ({ children }) => {
   const [currMonth, setCurrMonth] = useState(
     new Date(today.toLocaleDateString()).getMonth() + 1
   );
+  
   const [currYear, setCurrYear] = useState(
     new Date(today.toLocaleDateString()).getFullYear()
   );
+  console.log(currMonth);
+  console.log(currYear);
+  
 
   const [totalOfThisMonth, setTotalOfThisMonth] = useState(0);
 

@@ -23,8 +23,13 @@ function App() {
   const [left, setLeft] = useState(false);
   const [right, setRight] = useState(true);
 
-  const [currDate, setCurrDate] = useState();
-
+  const [currDate, setCurrDate] = useState(() => {
+    const today = new Date();
+    const offset = today.getTimezoneOffset();
+    return new Date(today.getTime() - offset * 60 * 1000)
+      .toISOString()
+      .split("T")[0];
+  });
   useEffect(() => {
     if (currMonth == 0) {
       decreaseYear();
@@ -36,9 +41,12 @@ function App() {
   }, [currMonth, currYear]);
 
   useEffect(() => {
-    setCurrMonth(new Date(currDate).getMonth() + 1);
-    setCurrYear(new Date(currDate).getFullYear());
-    console.log();
+    if (currDate) {
+      const date = new Date(currDate);
+      setCurrMonth(date.getMonth() + 1);
+      setCurrYear(date.getFullYear());
+      console.log("Selected Date:", currDate);
+    }
   }, [currDate]);
 
   return (
@@ -55,8 +63,15 @@ function App() {
               })}
             </h2>
 
-            <input type="date" onChange={(e) => setCurrDate(e.target.value)} />
-            <section>{currDate} M: {new Date(currDate).getMonth() + 1} / Y: {new Date(currDate).getFullYear()}</section>
+            <input
+              type="date"
+              value={new Date().toISOString().slice(0, 10)}
+              onChange={(e) => setCurrDate(e.target.value)}
+            />
+            <section>
+              {currDate} M: {new Date(currDate).getMonth() + 1} / Y:{" "}
+              {new Date(currDate).getFullYear()}
+            </section>
             <NavMonths setLeft={setLeft} setRight={setRight} />
             {left && (
               <ExpensesPage
