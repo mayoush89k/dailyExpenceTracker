@@ -353,6 +353,14 @@ export const ExpenseProvider = ({ children }) => {
     },
   ]);
 
+  useEffect(() => {
+    async function fetchData() {
+      setExpenseList(await getAll());
+    }
+    fetchData();
+    console.log(expenseList);
+  }, []);
+
   const getAll = async () => {
     return expenseList;
   };
@@ -402,8 +410,6 @@ export const ExpenseProvider = ({ children }) => {
 
   const getSumCurrMonthExpenses = async (currMonth, currYear) => {
     const expenseList = await getExpensesOfThisMonth(currMonth, currYear);
-    console.log(expenseList);
-
     setTotalOfThisMonth(
       expenseList.reduce((acc, cur) => {
         return cur.amount + acc;
@@ -411,9 +417,11 @@ export const ExpenseProvider = ({ children }) => {
     );
   };
 
-  const getFirstDate = () => expenseList.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date;
-  const getLastDate = () => expenseList.sort((a, b) => new Date(b.date) - new Date(a.date))[0].date;
-  
+  const getFirstDate = () =>
+    expenseList.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date;
+  const getLastDate = () =>
+    expenseList.sort((a, b) => new Date(b.date) - new Date(a.date))[0].date;
+
   return (
     <ExpenseContext.Provider
       value={{
@@ -435,7 +443,7 @@ export const ExpenseProvider = ({ children }) => {
         getSumCurrMonthExpenses,
         totalOfThisMonth,
         getFirstDate,
-        getLastDate
+        getLastDate,
       }}
     >
       {children}

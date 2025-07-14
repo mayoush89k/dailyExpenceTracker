@@ -8,6 +8,7 @@ import NavMonths from "./components/NavMonths/NavMonths";
 
 function App() {
   const {
+    expenseList,
     currMonth,
     currYear,
     setCurrMonth,
@@ -25,6 +26,11 @@ function App() {
   const [left, setLeft] = useState(false);
   const [right, setRight] = useState(true);
 
+  const [firstDate, setFirstDate] = useState(getFirstDate().slice(0,7)
+  );
+  const [lastDate, setLastDate] = useState(getLastDate().slice(0,7)
+  );
+
   const [currDate, setCurrDate] = useState(() => {
     const today = new Date();
     const offset = today.getTimezoneOffset();
@@ -32,20 +38,17 @@ function App() {
       .toISOString()
       .split("T")[0];
   });
-  useEffect(() => {
-    console.log(
-      new Date(getFirstDate()).getFullYear() +
-        "-" +
-        Number(new Date(getFirstDate()).getMonth() +
-        1)
-    );
-    console.log(
-      new Date(getLastDate()).getFullYear() +
-        "-" +
-        Number(new Date(getLastDate()).getMonth() +
-        1)
-    );
 
+  useEffect(() => {
+    setFirstDate(
+     getFirstDate().slice(0, 7)
+    );
+    setLastDate(
+      getLastDate().slice(0, 7)
+    );
+  }, [expenseList]);
+
+  useEffect(() => {
     if (currMonth == 0) {
       decreaseYear();
       setLastMonth(12);
@@ -80,18 +83,9 @@ function App() {
 
             <input
               type="month"
-              min={
-                new Date(getFirstDate()).getFullYear() +
-                "-" +
-                new Date(getFirstDate()).getMonth() +
-                1
-              }
-              max={
-                new Date(getLastDate()).getFullYear() +
-                "-" +
-                new Date(getLastDate()).getMonth() +
-                1
-              }
+              className="month-selector"
+              min={firstDate}
+              max={lastDate}
               value={new Date().toISOString().slice(0, 10)}
               onChange={(e) => setCurrDate(e.target.value)}
             />

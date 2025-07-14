@@ -55,10 +55,54 @@ button:disabled {
   text-align: center;
   color: #007c91;
 }
+.month-selector {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #f0faff;
+  border: 2px solid #00acc1;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #007c91;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 172, 193, 0.1);
+  transition: border-color 0.2s ease, background-color 0.3s ease;
+}
+
+.month-selector:hover {
+  border-color: #007c91;
+  background-color: #e0f7fa;
+}
+
+.month-selector:focus {
+  outline: none;
+  border-color: #007c91;
+  background-color: #e0f7fa;
+}
 
 @media (prefers-color-scheme: dark) {
   .today-title {
     color: white;
+  }
+  .month-selector {
+    background-color: #00acc1;
+    color: #e0f7fa;
+  }
+
+  .month-selector:hover {
+    border-color: #e0f7fa;
+    background-color: #007c91;
+  }
+
+  .month-selector:focus {
+    outline: none;
+    border-color: #e0f7fa;
+    background-color: #007c91;
+  }
+  .month-selector::selection{
+    background-color: #e0f7fa ;
   }
 }
 
@@ -74,5 +118,9 @@ button:disabled {
   }
   .today-title {
     font-size: smaller;
+  }
+
+  .month-selector {
+    font-size: 0.8rem;
   }
 }
