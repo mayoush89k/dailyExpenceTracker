@@ -51,9 +51,15 @@ button:disabled {
   display: flex;
   flex-direction: column;
 }
-.today-title{
+.today-title {
   text-align: center;
-  color: #007c91; 
+  color: #007c91;
+}
+
+@media (prefers-color-scheme: dark) {
+  .today-title {
+    color: white;
+  }
 }
 
 @media (max-width: 768px) {
@@ -62,12 +68,11 @@ button:disabled {
     flex-direction: row;
     justify-content: space-between;
     gap: 0;
-
   }
-  .body-sidebar{
+  .body-sidebar {
     width: 100%;
   }
-  .today-title{
+  .today-title {
     font-size: smaller;
   }
 }

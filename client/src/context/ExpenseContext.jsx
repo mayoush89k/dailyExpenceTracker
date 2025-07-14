@@ -9,16 +9,11 @@ export const ExpenseProvider = ({ children }) => {
   const [currMonth, setCurrMonth] = useState(
     new Date(today.toLocaleDateString()).getMonth() + 1
   );
-  
+
   const [currYear, setCurrYear] = useState(
     new Date(today.toLocaleDateString()).getFullYear()
   );
-  console.log(currMonth);
-  console.log(currYear);
-  
-
   const [totalOfThisMonth, setTotalOfThisMonth] = useState(0);
-
   const [expenseList, setExpenseList] = useState([
     {
       shopName: "Delek",
@@ -247,14 +242,14 @@ export const ExpenseProvider = ({ children }) => {
     {
       shopName: "Delek",
       amount: 100,
-      date: "11 2024-01-12T00:00:00",
+      date: "2024-01-12T00:00:00",
       paymentMethod: "Visa",
       visaNumber: 1111,
     },
     {
       shopName: "Yellow",
       amount: 300,
-      date: "01 2024-01-12T00:00:00",
+      date: "2024-01-12T00:00:00",
       paymentMethod: "Visa",
       visaNumber: 1112,
     },
@@ -416,6 +411,9 @@ export const ExpenseProvider = ({ children }) => {
     );
   };
 
+  const getFirstDate = () => expenseList.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date;
+  const getLastDate = () => expenseList.sort((a, b) => new Date(b.date) - new Date(a.date))[0].date;
+  
   return (
     <ExpenseContext.Provider
       value={{
@@ -436,6 +434,8 @@ export const ExpenseProvider = ({ children }) => {
         setLastMonth,
         getSumCurrMonthExpenses,
         totalOfThisMonth,
+        getFirstDate,
+        getLastDate
       }}
     >
       {children}

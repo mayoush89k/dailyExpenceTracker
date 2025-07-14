@@ -31,12 +31,7 @@ export default function ExpensesPage({ dir, currMonth, currYear }) {
             .filter((item) => item.visaNumber === v)
             .map((item, j) => (
               <section key={`expense${j}`}>
-                <section>
-                  {item.paymentMethod} - {item.visaNumber}
-                </section>
-                <section>
-                  {item.shopName}: ₪{item.amount}
-                </section>
+                {item.shopName}: ₪{item.amount}
               </section>
             ))}
         </section>

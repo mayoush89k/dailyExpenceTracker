@@ -32,7 +32,7 @@ menu ul {
 
 menu ul li {
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: color 0.2s ease;
   position: relative;
 }
@@ -60,13 +60,14 @@ menu ul li:hover {
   menu a img {
     width: 1.8rem;
     height: 1.8rem;
+    padding-top: 1.4rem;
   }
   menu {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     min-height: 800px;
-    padding: 0.4rem 1rem;
+    padding: 1rem 1rem;
   }
 
   menu ul {
@@ -77,7 +78,7 @@ menu ul li:hover {
   }
   menu ul li {
     cursor: pointer;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   menu a img {
     width: 3rem;

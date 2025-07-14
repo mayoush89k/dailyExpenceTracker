@@ -18,6 +18,8 @@ function App() {
     decreaseYear,
     setFirstMonth,
     setLastMonth,
+    getFirstDate,
+    getLastDate,
   } = useExpense();
 
   const [left, setLeft] = useState(false);
@@ -31,6 +33,19 @@ function App() {
       .split("T")[0];
   });
   useEffect(() => {
+    console.log(
+      new Date(getFirstDate()).getFullYear() +
+        "-" +
+        Number(new Date(getFirstDate()).getMonth() +
+        1)
+    );
+    console.log(
+      new Date(getLastDate()).getFullYear() +
+        "-" +
+        Number(new Date(getLastDate()).getMonth() +
+        1)
+    );
+
     if (currMonth == 0) {
       decreaseYear();
       setLastMonth(12);
@@ -64,14 +79,22 @@ function App() {
             </h2>
 
             <input
-              type="date"
+              type="month"
+              min={
+                new Date(getFirstDate()).getFullYear() +
+                "-" +
+                new Date(getFirstDate()).getMonth() +
+                1
+              }
+              max={
+                new Date(getLastDate()).getFullYear() +
+                "-" +
+                new Date(getLastDate()).getMonth() +
+                1
+              }
               value={new Date().toISOString().slice(0, 10)}
               onChange={(e) => setCurrDate(e.target.value)}
             />
-            <section>
-              {currDate} M: {new Date(currDate).getMonth() + 1} / Y:{" "}
-              {new Date(currDate).getFullYear()}
-            </section>
             <NavMonths setLeft={setLeft} setRight={setRight} />
             {left && (
               <ExpensesPage

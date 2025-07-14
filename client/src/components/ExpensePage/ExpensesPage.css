@@ -1,7 +1,8 @@
 .visaListExpense {
-    font-size: 1.4rem;
+  font-size: 1.4rem;
+  color: #00acc1;
   background: linear-gradient(135deg, #8be2ed, #ffffff);
-  border: 2px dashed #00acc1;
+  border: 4px dashed #00acc1;
   border-radius: 1rem;
   padding: 1rem 1.5rem;
   width: 90%;
@@ -80,11 +81,11 @@
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 10px rgba(0, 124, 145, 0.1);
+  box-shadow: 0 4px 10px #3a405a;
 }
 
 .visaTitle {
-  background-color: #00acc1;
+  background-color: #007c91;
   color: white;
   text-align: center;
   padding: 1rem;
@@ -94,10 +95,19 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+@media (prefers-color-scheme: dark) {
+  .visaListExpense {
+    color: white;
+    background: linear-gradient(135deg, #8be2ed, #3a405a);
+    border:0 #8be2ed;
+    /* box-shadow: 4px 4px 10px white; */
+  }
+}
+
 @media (max-width: 768px) {
   .visaListExpense {
     width: 60%;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
   .total-expense {
     margin-top: 1rem;
@@ -106,11 +116,11 @@
   }
   .visaTitle {
     padding: 0.5rem;
-    font-size: 0.5rem;
+    font-size: 0.9rem;
   }
-.container-page {
-   gap: 0.5rem;
-}
+  .container-page {
+    gap: 0.5rem;
+  }
   @keyframes slideIn {
     0% {
       transform: translateX(10%);
