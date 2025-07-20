@@ -1,8 +1,13 @@
+.nav-container {
+  flex-direction: column;
+}
+.nav-container,
 .month-nav {
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 }
 
 .month-nav button {
@@ -24,7 +29,14 @@
   background-color: #b2ebf2;
   cursor: not-allowed;
 }
+.today-title {
+  text-align: center;
+  color: #007c91;
+}
 
+h2 {
+  margin: 0;
+}
 @media (max-width: 768px) {
   .month-nav {
     gap: 0.5rem;
@@ -34,5 +46,10 @@
   .month-nav button {
     padding: 0.25rem 0.5rem;
     font-size: 0.5rem;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .today-title {
+    color: white;
   }
 }

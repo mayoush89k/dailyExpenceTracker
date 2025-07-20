@@ -51,10 +51,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
 }
-.today-title {
-  text-align: center;
-  color: #007c91;
-}
+
 .month-selector {
   appearance: none;
   -webkit-appearance: none;
@@ -69,6 +66,7 @@ button:disabled {
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 172, 193, 0.1);
   transition: border-color 0.2s ease, background-color 0.3s ease;
+  margin-top: 1rem;
 }
 
 .month-selector:hover {

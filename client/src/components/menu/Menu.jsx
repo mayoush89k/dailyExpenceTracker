@@ -4,11 +4,9 @@ import "./Menu.css";
 export default function Menu() {
   return (
     <menu>
-      <section>
-        <a href="https://daily-expense-tracking.netlify.app/">
-          <img src="logo.svg" />
-        </a>
-      </section>
+      <a href="https://daily-expense-tracking.netlify.app/">
+        <img src="logo.svg" />
+      </a>
       <ul>
         <li>Home</li>
         <li>Monthly Diagram</li>

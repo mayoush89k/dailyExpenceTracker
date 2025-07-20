@@ -16,6 +16,12 @@ export const ExpenseProvider = ({ children }) => {
   const [totalOfThisMonth, setTotalOfThisMonth] = useState(0);
   const [expenseList, setExpenseList] = useState([
     {
+      shopName: "ShuferSal",
+      amount: 400,
+      date: "2025-01-12T00:00:00",
+      paymentMethod: "Cash",
+    },
+    {
       shopName: "Delek",
       amount: 100,
       date: "2025-01-12T00:00:00",
@@ -359,55 +365,59 @@ export const ExpenseProvider = ({ children }) => {
     }
     fetchData();
     console.log(expenseList);
+    console.log(getListOfPaymentMethods());
   }, []);
 
+  // get all items
   const getAll = async () => {
     return expenseList;
   };
 
+  // get the expenses of this month
   const getExpensesOfThisMonth = async (currMonth, currYear) => {
     return expenseList
       .filter((item) => new Date(item.date).getFullYear() == currYear)
       .filter((item) => new Date(item.date).getMonth() + 1 == currMonth);
   };
 
+  // get the expenses of this month that used by special visa number
   const getExpensesOfVisa = async (visa, currMonth, currYear) => {
     return (await getExpensesOfThisMonth(currMonth, currYear)).filter(
       (item) => item.visa == visa
     );
   };
 
-  const filterMonth = async (currMonth) => {
-    return await getAll.filter(
-      (item) => new Date(item.date).getMonth() + 1 == currMonth
-    );
-  };
-  const filterYear = async (currYear) => {
-    return await getAll.filter(
-      (item) => new Date(item.date).getFullYear() == currYear
-    );
-  };
-
+  // get the first date of the expenses list and save its month
   const setFirstMonth = () => {
     setCurrMonth(1);
   };
+
+  // get the last date of the expenses list and save its month
   const setLastMonth = () => {
     setCurrMonth(12);
   };
+
+  // move forward of month page
   const increaseMonth = () => {
     setCurrMonth((currMonth) => currMonth + 1);
   };
+
+  // move backward of month page
   const decreaseMonth = () => {
     setCurrMonth((currMonth) => currMonth - 1);
   };
 
+  // move to next of current year
   const increaseYear = () => {
     setCurrYear((currYear) => currYear + 1);
   };
+
+  // move back to previous of current year
   const decreaseYear = () => {
     setCurrYear((currYear) => currYear - 1);
   };
 
+  // count the sum oof a;; expenses that have been spent in this month
   const getSumCurrMonthExpenses = async (currMonth, currYear) => {
     const expenseList = await getExpensesOfThisMonth(currMonth, currYear);
     setTotalOfThisMonth(
@@ -417,17 +427,38 @@ export const ExpenseProvider = ({ children }) => {
     );
   };
 
+  // get the first date of the expenses list
   const getFirstDate = () =>
     expenseList.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date;
   const getLastDate = () =>
     expenseList.sort((a, b) => new Date(b.date) - new Date(a.date))[0].date;
 
+  // get payment methods of this month
+
+  // get list of User's visa Numbers
+  const getListOfVisa = () => {
+    return expenseList.reduce((acc, cur) => {
+      if (!acc.includes(cur.visaNumber)) {
+        acc.push(cur.visaNumber);
+      }
+      return acc;
+    }, []);
+  };
+
+  // get list of User's payment Methods
+  const getListOfPaymentMethods = () => {
+    return expenseList.reduce((acc, cur) => {
+      if (!acc.includes(cur.paymentMethod)) {
+        acc.push(cur.paymentMethod);
+      }
+      return acc;
+    }, []);
+  };
+
   return (
     <ExpenseContext.Provider
       value={{
         expenseList,
-        filterMonth,
-        filterYear,
         getExpensesOfThisMonth,
         getExpensesOfVisa,
         currMonth,
@@ -444,6 +475,8 @@ export const ExpenseProvider = ({ children }) => {
         totalOfThisMonth,
         getFirstDate,
         getLastDate,
+        getListOfVisa,
+        getListOfPaymentMethods,
       }}
     >
       {children}

@@ -39,6 +39,11 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  border: 2rem solid #fc6471;
+  border-right: 2rem double #fc6471;
+  border-radius: 20%;
+  margin: 0 20%;
+  padding: 1rem;
 }
 #right {
   animation: slideIn 0.6s ease-in-out;
@@ -69,6 +74,21 @@
   align-items: center;
 }
 
+.visaTitle {
+  background-color: #fc6471;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.expense {
+  border-bottom: #fc6471 dotted 0.1rem;
+}
+
 .total-expense {
   margin-top: 2rem;
   text-align: center;
@@ -84,27 +104,21 @@
   box-shadow: 0 4px 10px #3a405a;
 }
 
-.visaTitle {
-  background-color: #007c91;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 @media (prefers-color-scheme: dark) {
   .visaListExpense {
     color: white;
     background: linear-gradient(135deg, #8be2ed, #3a405a);
-    border:0 #8be2ed;
+    border: 0 #8be2ed;
     /* box-shadow: 4px 4px 10px white; */
   }
 }
 
 @media (max-width: 768px) {
+  #right,
+  #left {
+    margin: 2rem;
+    padding: 1rem;
+  }
   .visaListExpense {
     width: 60%;
     font-size: 0.8rem;
