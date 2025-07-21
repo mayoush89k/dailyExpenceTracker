@@ -454,6 +454,39 @@ export const ExpenseProvider = ({ children }) => {
       return acc;
     }, []);
   };
+  
+  // get first and last data dates
+  const lastMonth = getLastDate().slice(5, 7);
+  const lastYear = getLastDate().slice(0, 4);
+  const firstMonth = getFirstDate().slice(5, 7);
+  const firstYear = getFirstDate().slice(0, 4);
+
+  const current = currYear * 100 + currMonth;
+  const first = Number(firstYear + firstMonth + "");
+  const last = Number(lastYear + lastMonth + "");
+
+  // move forward and backward
+  const prevMonth = (setLeft, setRight) => {
+    if (first < current) {
+      decreaseMonth();
+      setLeft(false);
+      setRight(false);
+      setTimeout(() => {
+        setLeft(true);
+      }, 200);
+    }
+  };
+
+  const nextMonth = (setLeft, setRight) => {
+    if (last > current) {
+      increaseMonth();
+      setLeft(false);
+      setRight(false);
+      setTimeout(() => {
+        setRight(true);
+      }, 200);
+    }
+  };
 
   return (
     <ExpenseContext.Provider
@@ -477,6 +510,11 @@ export const ExpenseProvider = ({ children }) => {
         getLastDate,
         getListOfVisa,
         getListOfPaymentMethods,
+        nextMonth,
+        prevMonth,
+        first,
+        last,
+        current
       }}
     >
       {children}

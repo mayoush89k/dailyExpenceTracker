@@ -24,7 +24,7 @@ export default function ExpensesPage({ dir, currMonth, currYear }) {
   }, [currMonth, currYear]);
 
   useEffect(() => {
-    console.log(expensesOfThisMonth);
+    // console.log(expensesOfThisMonth);
   }, [expensesOfThisMonth]);
 
   const filterExpenses = (expList, filteredBy, result) => {
@@ -51,13 +51,13 @@ export default function ExpensesPage({ dir, currMonth, currYear }) {
               )
           )
         ) : (
-          <section>
+          <section key={`p${p}`}>
             {expensesOfThisMonth
               .filter((item) => item.paymentMethod == p)
               .map((item, j) => (
-                <section className="visaListExpense">
+                <section className="visaListExpense" key={`expense${j}`}>
                   <h3 className="visaTitle">{p}</h3>
-                  <section className="expense" key={`expense${j}`}>
+                  <section className="expense">
                     {item.shopName}: ₪{item.amount}
                   </section>
                 </section>

@@ -7,26 +7,32 @@ import Header from "./components/Header/Header";
 import NavMonths from "./components/NavMonths/NavMonths";
 
 function App() {
-  const {
-    currMonth,
-    currYear,
-    setCurrMonth,
-    increaseYear,
-    decreaseYear,
-  } = useExpense();
+  const { currMonth, currYear, first , last , current , prevMonth , nextMonth} =
+    useExpense();
 
   const [left, setLeft] = useState(false);
   const [right, setRight] = useState(true);
+  let touchStartX = 0;
+  let touchEndX = 0;
 
-  useEffect(() => {
-    if (currMonth == 0) {
-      decreaseYear();
-      setCurrMonth(12);
-    } else if (currMonth == 13) {
-      increaseYear();
-      setCurrMonth(1);
+  const handleTouchStart = (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleGesture(touchStartX, touchEndX);
+  };
+  const handleGesture = (touchStartX, touchEndX) => {
+    if (last >= current && touchEndX < touchStartX - 50) {
+      // Swipe Left → Next Month
+      nextMonth(setLeft, setRight);
     }
-  }, [currMonth, currYear]);
+    if (first < current && touchEndX > touchStartX + 50) {
+      // Swipe Right → Previous Month
+      prevMonth(setLeft, setRight);
+    }
+  };
 
   return (
     <>
@@ -34,20 +40,22 @@ function App() {
         <Menu />
         <aside className="body-sidebar">
           <Header />
-          <section>
-            <NavMonths setLeft={setLeft} setRight={setRight} />
+          <section onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+            <NavMonths setLeft={setLeft} setRight={setRight} 
+              handleGesture ={handleGesture}
+            />
             {left && (
               <ExpensesPage
                 dir="left"
-                currMonth={currMonth - 1}
-                currYear={currYear}
-              />
-            )}
-            {right && (
-              <ExpensesPage
-                dir="right"
                 currMonth={currMonth}
                 currYear={currYear}
+                />
+              )}
+            {right && (
+              <ExpensesPage
+              dir="right"
+              currMonth={currMonth}
+              currYear={currYear}
               />
             )}
           </section>

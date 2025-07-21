@@ -16,14 +16,21 @@ export default function NavMonths({ setLeft, setRight }) {
     currYear,
     setCurrMonth,
     setCurrYear,
-    setFirstMonth,
-    setLastMonth,
+    increaseYear,
+    decreaseYear,
     getFirstDate,
     getLastDate,
+    nextMonth,
+    prevMonth,
+    first,
+    last,
+    current
+
   } = useExpense();
 
   const [firstDate, setFirstDate] = useState(getFirstDate().slice(0, 7));
   const [lastDate, setLastDate] = useState(getLastDate().slice(0, 7));
+
 
   const [currDate, setCurrDate] = useState(() => {
     const today = new Date();
@@ -32,6 +39,18 @@ export default function NavMonths({ setLeft, setRight }) {
       .toISOString()
       .split("T")[0];
   });
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+  const handleKeyDown = (e) => {
+    if (first < current && e.key === "ArrowLeft") {
+      prevMonth(setLeft, setRight);
+    } else if (last >= current && e.key === "ArrowRight") {
+      nextMonth(setLeft, setRight);
+    }
+  };
 
   useEffect(() => {
     setFirstDate(getFirstDate().slice(0, 7));
@@ -43,27 +62,21 @@ export default function NavMonths({ setLeft, setRight }) {
       const date = new Date(currDate);
       setCurrMonth(date.getMonth() + 1);
       setCurrYear(date.getFullYear());
-      console.log("Selected Date:", currDate);
     }
   }, [currDate]);
 
-  const prevMonth = () => {
-    decreaseMonth();
-    setLeft(false);
-    setRight(false);
-    setTimeout(() => {
-      setLeft(true);
-    }, 200);
-  };
+  useEffect(() => {
+    if (currMonth == 0) {
+      decreaseYear();
+      setCurrMonth(12);
+    } else if (currMonth == 13) {
+      increaseYear();
+      setCurrMonth(1);
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currMonth, currYear]);
 
-  const nextMonth = () => {
-    increaseMonth();
-    setLeft(false);
-    setRight(false);
-    setTimeout(() => {
-      setRight(true);
-    }, 200);
-  };
 
   return (
     <div className="nav-container">
@@ -76,10 +89,7 @@ export default function NavMonths({ setLeft, setRight }) {
         onChange={(e) => setCurrDate(e.target.value)}
       />
       <div className="month-nav">
-        <button
-          onClick={prevMonth}
-          disabled={currYear <= 2000 && currMonth === 1}
-        >
+        <button onClick={() => prevMonth(setLeft, setRight)} disabled={first >= current}>
           ⬅️ Previous
         </button>
         <h2 className="today-title">
@@ -88,13 +98,7 @@ export default function NavMonths({ setLeft, setRight }) {
             year: "numeric",
           })}
         </h2>
-        <button
-          onClick={nextMonth}
-          disabled={
-            currYear > todayYear ||
-            (currYear === todayYear && currMonth >= todayMonth)
-          }
-        >
+        <button onClick={() => nextMonth(setLeft, setRight)} disabled={last <= current}>
           Next ➡️
         </button>
       </div>
